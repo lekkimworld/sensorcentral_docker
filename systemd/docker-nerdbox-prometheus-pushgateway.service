@@ -1,0 +1,13 @@
+[Unit]
+Description=Prometheus pushgateway server for nerdbox monitoring
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/local/bin/nerdbox-docker-prometheus-pushgateway-start
+ExecStop=/usr/bin/docker stop -t 2 nerdbox-prometheus-pushgateway
+ExecStopPost=/usr/bin/docker rm -f nerdbox-prometheus-pushgateway
+
+[Install]
+WantedBy=default.target

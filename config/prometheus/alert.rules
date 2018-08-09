@@ -1,0 +1,80 @@
+## alert.rules ##
+### Reload with: curl -X POST http://127.0.0.1:9090/-/reload (not working in early versions of prometheus 2) ###
+
+groups:
+- name: nerdbox
+  rules:
+  - alert: LowDiskSpaceOS
+    expr: job:request_latency_seconds:mean5m{job="myjob"} > 0.5
+    for: 10m
+    labels:
+      severity: critical
+    annotations:
+      summary: Low disk space in /
+      description: Low disk space on main OS mount point (/)
+
+  - alert: LowDiskSpaceForOutput
+    expr: node_filesystem_avail{job="node", mountpoint =~ "/media/usb0|/media/usb1"} / (1024 ^ 3) < 4
+    for: 10m
+    labels:
+      severity: critical
+    annotations:
+      summary: Low disk space in /data/output
+      description: Low disk space in image output folder (/data/output)
+
+  - alert: DeviceDown
+    expr: up{job="node"} == 0
+    for: 50m
+    labels:
+      severity: critical
+    annotations:
+      summary: Device not reachable
+      description: Prometheus server could not collect data from device. Therefore considered down.
+
+  - alert: LastCaptureJobFailed
+    expr: nerdbox_latest_capture_job_fail_completion_time > nerdbox_latest_capture_job_success_completion_time
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: Latest capture job failed
+      description: The most recent attempt to capture failed
+
+  - alert: TestingAlertSystem
+    expr: up{job="node", instance = "nerdboxTEST.sokr.dk:80"} != 3
+    for: 1s
+    labels:
+      severity: test
+    annotations:
+      summary: This is a test alert only
+      description: Just for testing
+
+
+  - alert: WeatherReportOutdated
+    expr: (time() - nerdbox_current_weather_report_time) / 60 > 120
+    for: 1s
+    labels:
+      severity: page
+    annotations:
+      summary: Weather data is outdated
+      description: Weather report is more than 120 minutes old on device. It should have refreshed. Wrong weather data affects image captures (captures unwanted or skips wanted).
+
+
+  - alert: TestingGroupAlertSystem
+    expr: up{job="node", instance = "nerdboxTEST.sokr.dk:80"} != 2
+    for: 1m
+    labels:
+      severity: test
+    annotations:
+      summary: This is a group test alert only.
+      description: Prometheus server could collect data from device. Therefore considered not down.
+
+
+#ALERT CaptureJobsFail
+#  IF changes(nerdbox_latest_capture_job_fail_completion_time[12h]) > 10
+#  FOR 1m
+#  LABELS { severity = "critical" }
+#  ANNOTATIONS {
+#    summary = "Capture jobs are failing",
+#    description = "There is an unexpected number of failed jobs on the device (more than 5 within the past 12 hours)."
+#  }

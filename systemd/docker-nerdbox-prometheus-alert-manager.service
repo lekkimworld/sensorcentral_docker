@@ -1,0 +1,13 @@
+[Unit]
+Description=Prometheus alert manager for nerdbox monitoring
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/local/bin/nerdbox-docker-prometheus-alert-manager-start
+ExecStop=/usr/bin/docker stop -t 2 nerdbox-prometheus-alert-manager
+ExecStopPost=/usr/bin/docker rm -f nerdbox-prometheus-alert-manager
+
+[Install]
+WantedBy=default.target

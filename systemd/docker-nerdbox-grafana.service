@@ -1,0 +1,13 @@
+[Unit]
+Description=Grafana server for nerdbox monitoring
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/local/bin/nerdbox-docker-grafana-start
+ExecStop=/usr/bin/docker stop -t 2 nerdbox-grafana
+ExecStopPost=/usr/bin/docker rm -f nerdbox-grafana
+
+[Install]
+WantedBy=default.target
