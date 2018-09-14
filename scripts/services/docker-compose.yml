@@ -6,7 +6,7 @@ services:
     build:
       context: .
       args:
-        config.file: /data/prometheus.yml
+        config.file: /etc/prometheus/prometheus.yml
         storage.tsdb.path: /data/storage
         storage.tsdb.retention: 100d
         web.console.templates: /data/consoles
@@ -16,6 +16,7 @@ services:
     networks:
       - docker-network
     volumes:
+      - ../../config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - /mnt/docker-volumes/prometheus:/data
 
   grafana:

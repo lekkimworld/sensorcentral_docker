@@ -12,3 +12,11 @@ scrape_configs:
     static_configs:
     - targets:
         - "localhost:9090"
+
+  - job_name: "sensordata"
+    metrics_path: "/scrapedata"
+    scheme: "https"
+    static_configs:
+    - targets:
+        - "desolate-meadow-68880.herokuapp.com"
+
