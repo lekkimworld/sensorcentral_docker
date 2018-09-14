@@ -60,3 +60,5 @@ The application in each container is configured as documented on the respective 
 * When containers fail to start, hints are often in the containers output/log (`docker container logs nerdbox-prometheus -t`)
 * Consider a docker CLI-based UI like [DRY](https://moncho.github.io/dry/) or a webbased to maintain overview of container setup
 * `docker pull quay.io/prometheus/prometheus` to pull latest stable version of component. Beware this might change configuration file structure and therefore break your configs
+
+- Grafana runs the docker container using a user with uid 472 to create suitable user and allow to access grafana dir - see config/grafana/create_user_and_dir.sh
