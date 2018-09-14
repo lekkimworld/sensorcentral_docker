@@ -11,8 +11,6 @@ services:
         storage.tsdb.retention: 100d
         web.console.templates: /data/consoles
         web.console.libraries: /data/console_libraries
-        web.external-url: http://localhost:9090/prometheus/
-        web.route-prefix: /
     ports: 
       - 9090:9090
     networks:
