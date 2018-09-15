@@ -17,7 +17,7 @@ services:
       - docker-network
     volumes:
       - ../../config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - /mnt/docker-volumes/prometheus:/data
+      - /mnt/docker-volumes/prometheus:/prometheus
 
   grafana:
     image: grafana/grafana
