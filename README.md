@@ -62,3 +62,9 @@ The application in each container is configured as documented on the respective 
 * `docker pull quay.io/prometheus/prometheus` to pull latest stable version of component. Beware this might change configuration file structure and therefore break your configs
 
 - Grafana runs the docker container using a user with uid 472 to create suitable user and allow to access grafana dir - see config/grafana/create_user_and_dir.sh
+
+- Crontab used to auto-renew let's encrypt cert
+```
+0 23 * * * docker run --rm -it --name certbot -v "/mnt/docker-volumes/letsencrypt-docker-nginx/etc/letsencrypt:/etc/letsencrypt" -v "/mnt/docker-volumes/letsencrypt-docker-nginx/var/lib/letsencrypt:/var/lib/letsencrypt" -v "/mnt/docker-volumes/letsencrypt-docker-nginx/data/letsencrypt:/data/letsencrypt" -v "/mnt/docker-volumes/letsencrypt-docker-nginx/var/log/letsencrypt:/var/log/letsencrypt" certbot/certbot renew --webroot -w /data/letsencrypt --quiet && docker kill --signal=HUP production-nginx-container
+```
+
