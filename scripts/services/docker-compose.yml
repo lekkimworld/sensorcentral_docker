@@ -3,7 +3,7 @@ version: '3.1'
 services:
   prometheus:
     image: quay.io/prometheus/prometheus
-    command: "--storage.tsdb.retention=600d --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus"
+    command: "--storage.tsdb.retention=600d --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.enable-admin-api"
     ports: 
       - 9090:9090
     networks:
