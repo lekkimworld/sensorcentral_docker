@@ -20,3 +20,10 @@ scrape_configs:
     - targets:
         - "desolate-meadow-68880.herokuapp.com"
 
+  - job_name: "traffic"
+    scrape_interval: "10m"
+    metrics_path: "/scrapedata"
+    scheme: "https"
+    static_configs:
+    - targets:
+        - "fathomless-shelf-41981.herokuapp.com"
