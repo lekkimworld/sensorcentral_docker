@@ -21,7 +21,6 @@ scrape_configs:
         - "desolate-meadow-68880.herokuapp.com"
 
   - job_name: "traffic"
-    scrape_interval: "10m"
     metrics_path: "/scrapedata"
     scheme: "https"
     static_configs:
