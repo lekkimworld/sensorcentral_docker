@@ -37,8 +37,10 @@ services:
       - ../../config/nginx/site:/usr/share/nginx/html
       - /mnt/docker-volumes/letsencrypt-docker-nginx/data/letsencrypt:/data/letsencrypt
       - ../../config/nginx/dh-param/dhparam-2048.pem:/etc/ssl/certs/dhparam-2048.pem
-      - /mnt/docker-volumes/letsencrypt-docker-nginx/etc/letsencrypt/live/sensorcentral.heisterberg.dk/fullchain.pem:/etc/letsencrypt/live/sensorcentral.heisterberg.dk/fullchain.pem
-      - /mnt/docker-volumes/letsencrypt-docker-nginx/etc/letsencrypt/live/sensorcentral.heisterberg.dk/privkey.pem:/etc/letsencrypt/live/sensorcentral.heisterberg.dk/privkey.pem      
+      - /mnt/docker-volumes/letsencrypt-docker-nginx/etc/letsencrypt/live/grafana.heisterberg.dk-0003/fullchain.pem:/etc/letsencrypt/live/grafana.heisterberg.dk/fullchain.pem
+      - /mnt/docker-volumes/letsencrypt-docker-nginx/etc/letsencrypt/live/grafana.heisterberg.dk-0003/privkey.pem:/etc/letsencrypt/live/grafana.heisterberg.dk/privkey.pem      
+      - /mnt/docker-volumes/letsencrypt-docker-nginx/etc/letsencrypt/live/prometheus.heisterberg.dk-0001/fullchain.pem:/etc/letsencrypt/live/prometheus.heisterberg.dk/fullchain.pem
+      - /mnt/docker-volumes/letsencrypt-docker-nginx/etc/letsencrypt/live/prometheus.heisterberg.dk-0001/privkey.pem:/etc/letsencrypt/live/prometheus.heisterberg.dk/privkey.pem
     networks:
       - docker-network
     depends_on:

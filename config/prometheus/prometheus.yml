@@ -6,23 +6,3 @@ global:
 rule_files:
   - "/data/alert.rules"
 
-scrape_configs:
-  - job_name: "metrics"
-    metrics_path: "/metrics"
-    static_configs:
-    - targets:
-        - "localhost:9090"
-
-  - job_name: "sensordata"
-    metrics_path: "/scrapedata"
-    scheme: "https"
-    static_configs:
-    - targets:
-        - "desolate-meadow-68880.herokuapp.com"
-
-  - job_name: "traffic"
-    metrics_path: "/scrapedata"
-    scheme: "https"
-    static_configs:
-    - targets:
-        - "track-driving-time.herokuapp.com"

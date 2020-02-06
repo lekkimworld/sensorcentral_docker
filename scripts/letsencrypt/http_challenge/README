@@ -1,0 +1,14 @@
+Grafana dry-run
+/usr/bin/docker run --rm -it --name certbot -v "/mnt/docker-volumes/letsencrypt-docker-nginx/etc/letsencrypt:/etc/letsencrypt" -v "/mnt/docker-volumes/letsencrypt-docker-nginx/var/lib/letsencrypt:/var/lib/letsencrypt" -v "/home/lekkim/sensorcentral_docker/scripts/letsencrypt/http_challenge/site:/usr/share/nginx/html" -v "/mnt/docker-volumes/letsencrypt-docker-nginx/var/log/letsencrypt:/var/log/letsencrypt" certbot/certbot certonly --webroot --register-unsafely-without-email --agree-tos --webroot-path=/usr/share/nginx/html --dry-run -d grafana.heisterberg.dk
+
+Grafana get-cert
+central_docker/scripts/letsencrypt/grafana/http_challenge$ /usr/bin/docker run --rm -it --name certbot -v "/mnt/docker-volumes/letsencrypt-docker-nginx/etc/letsencrypt:/etc/letsencrypt" -v "/mnt/docker-volumes/letsencrypt-docker-nginx/var/lib/letsencrypt:/var/lib/letsencrypt" -v "/home/lekkim/sensorcentral_docker/scripts/letsencrypt/http_challenge/site:/usr/share/nginx/html" -v "/mnt/docker-volumes/letsencrypt-docker-nginx/var/log/letsencrypt:/var/log/letsencrypt" certbot/certbot certonly --webroot --email lekkim@heisterberg.dk --agree-tos --no-eff-email --webroot-path=/usr/share/nginx/html -d grafana.heisterberg.dk
+
+Prometheus dry-run
+/usr/bin/docker run --rm -it --name certbot -v "/mnt/docker-volumes/letsencrypt-docker-nginx/etc/letsencrypt:/etc/letsencrypt" -v "/mnt/docker-volumes/letsencrypt-docker-nginx/var/lib/letsencrypt:/var/lib/letsencrypt" -v "/home/lekkim/sensorcentral_docker/scripts/letsencrypt/http_challenge/site:/usr/share/nginx/html" -v "/mnt/docker-volumes/letsencrypt-docker-nginx/var/log/letsencrypt:/var/log/letsencrypt" certbot/certbot certonly --webroot --register-unsafely-without-email --agree-tos --webroot-path=/usr/share/nginx/html --dry-run -d prometheus.heisterberg.dk
+
+Prometheus get-cert
+/usr/bin/docker run --rm -it --name certbot -v "/mnt/docker-volumes/letsencrypt-docker-nginx/etc/letsencrypt:/etc/letsencrypt" -v "/mnt/docker-volumes/letsencrypt-docker-nginx/var/lib/letsencrypt:/var/lib/letsencrypt" -v "/home/lekkim/sensorcentral_docker/scripts/letsencrypt/http_challenge/site:/usr/share/nginx/html" -v "/mnt/docker-volumes/letsencrypt-docker-nginx/var/log/letsencrypt:/var/log/letsencrypt" certbot/certbot certonly --webroot --email lekkim@heisterberg.dk --agree-tos --no-eff-email --webroot-path=/usr/share/nginx/html -d prometheus.heisterberg.dk
+
+
+
