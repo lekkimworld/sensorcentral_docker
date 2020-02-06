@@ -1,0 +1,12 @@
+[Unit]
+Description=Prometheus server for monitoring
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/local/bin/docker-compose -f /home/lekkim/sensorcentral_docker/scripts/services/docker-compose.yml up -d
+ExecStop=/usr/local/bin/docker-compose -f /home/lekkim/sensorcentral_docker/scripts/services/docker-compose.yml down
+
+[Install]
+WantedBy=default.target
