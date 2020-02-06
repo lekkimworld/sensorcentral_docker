@@ -6,3 +6,23 @@ global:
 rule_files:
   - "/data/alert.rules"
 
+scrape_configs:
+  - job_name: "metrics"
+    metrics_path: "/metrics"
+    static_configs:
+    - targets:
+        - "localhost:9090"
+
+  - job_name: "sensordata"
+    metrics_path: "/scrapedata"
+    scheme: "https"
+    static_configs:
+    - targets:
+        - "sensorcentral.heisterberg.dk"
+
+  - job_name: "traffic"
+    metrics_path: "/scrapedata"
+    scheme: "https"
+    static_configs:
+    - targets:
+        - "track-driving-time.herokuapp.com"
