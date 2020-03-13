@@ -2,6 +2,7 @@ version: '3.1'
 
 services:
   prometheus:
+    restart: unless-stopped
     image: quay.io/prometheus/prometheus
     command: "--storage.tsdb.retention.time=600d --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.enable-admin-api"
     ports: 
@@ -13,6 +14,7 @@ services:
       - /mnt/docker-volumes/prometheus:/prometheus
 
   grafana:
+    restart: unless-stopped
     image: grafana/grafana
     ports:
       - 3000:3000
@@ -27,6 +29,7 @@ services:
       - prometheus
 
   nginx:
+    restart: unless-stopped
     image: nginx:latest
     ports:
       - "80:80"
